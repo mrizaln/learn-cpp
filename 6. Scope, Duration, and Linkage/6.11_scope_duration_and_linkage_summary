@@ -1,0 +1,101 @@
+============[ Scope summary ]===========
+
+an identifier's scope determines where the identifier can be accessed within the source
+code
+    > block (local) scope:  can only be accessed within the source code
+        - local variables
+        - function parameters
+        - user-defined type definitions (such as enums and classes) declared inside a block
+
+    > file (global) scope:  can be accessed from the point of declaration until the end of
+                            the file
+        - global variables
+        - functions
+        - user-defined type definitions declared inside a namespace or in the global scope
+
+
+
+============[ duration summary ]============
+
+a variable's duration determines when it is created and destroyed
+    > automatic duration:   created at the point of definition, and destroyed when the block
+                            they are part of is exited
+        - local variables
+        - function parameters
+
+    > static duration:      created when the program begins and destroyed when the program 
+                            ends
+        - global variables
+        - static local variables
+
+    > dynamic duration:     created and destroyed by programmer request
+        - dynamic allocated variables
+
+
+
+============[ linkage summary ]============
+
+an identifier's linkage determines whether multiple declarations of an identifier refer to
+the same identifier or not
+    > no linkage:           means the identifier only refers to itself
+        - local variables
+        - user-defined type definitions (such as enums and classes) declared inside a block
+    
+    > internal linkage:     can be accessed anywhere within the file it declared
+        - static global variable (initialized or uninitialized)
+        - static functions
+        - const global variables
+        - functions declared inside an unnamed namespace
+        - user-defined type definitions (such as enums and classes) declared inside an
+          unnamed namespace
+
+    > external linkage:     can be accessed anywhere within the file it is declared, or
+                            other files (via forward declaratoin)
+        - functions
+        - non-const global variables (initialized or uninitialized)
+        - extern const global variables
+        - inline const global variables
+        - user-defined type definitions (such as enums and classes) declared inside a
+          namesoace or in the global scope
+
+
+
+============[ variable scope, duration, and linkage summary ]============
+-----------------------------------------------------------------------------------------------------------------------------------------
+    type                              |     example                       | scope | duration  | linkage   |     notes
+-----------------------------------------------------------------------------------------------------------------------------------------
+local variable                          int x;                              block   automatic   none
+static local variable                   static int s_x;                     block   static      none
+dynamic variable                        int *x { new int{} };               block   dynamic     none
+function parameter                      void foo(int x);                    block   automatic   none
+external non-constant global variable   int g_x;                            file    static      external    initialized or uninitialized
+internal non-constant global variable   static int g_x;                     file    static      internal    initialized or uninitialized
+internal constant global variable       constexpr int g_x { 1 };            file    static      iternal     must be initialized
+external constant global variable       extern const int g_x { 1 };         file    static      external    must be initialized
+inline constant global variable         inline constexpr int g_x { 1 };     file    static      external    must be initialized
+
+
+
+============[ forward declaration summary ]============
+-------------------------------------------------------------------------------------------------------------------------
+    type                                  |    example                |     notes
+-------------------------------------------------------------------------------------------------------------------------
+function forward declaration                void foo(int x);            prototype only, no function body
+non-constant variable forward declaration   extern int g_x;             must be initialized
+const variable forward declaration          extern const int g_x;       must be initialized
+constexpr variable forward declaration      extern constexpr int g_x;   not allowed, constexpr cannot be forward declared
+
+
+
+============[ what the heck is a storage class specifier ]============
+
+they set the storage duration and linkage of the identifier
+-------------------------------------------------------------------------------------------------------------------
+  specifier   |                 meaning                                                      |      note
+-------------------------------------------------------------------------------------------------------------------
+extern          static (or thread_local) storage duration and external linkage
+static          static (or thread_local) storage duration and internal linkage
+thread_local    thread storage duration                                                         introduced in C++11
+mutable         object allowed to be modified even if containing class is const
+auto            automatic storage duration                                                      deprecated in C++11
+register        automatic storage duration and hint to the compiler to place in a register      deprecated in C++17

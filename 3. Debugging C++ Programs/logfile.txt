@@ -1,0 +1,6 @@
+﻿2022-02-17 13:30:46.732 DEBUG [614229] [main_1@89] main() called
+2022-02-17 13:30:46.732 DEBUG [614229] [getUserInput_1@78] getUserInput() called
+2022-02-17 13:38:47.202 DEBUG [618720] [main_1@91] main() called
+2022-02-17 13:38:47.213 DEBUG [618720] [getUserInput_1@78] getUserInput() called
+2022-02-17 13:45:00.276 DEBUG [622304] [main_1@91] main() called
+2022-02-17 13:45:00.277 DEBUG [622304] [getUserInput_1@78] getUserInput() called
