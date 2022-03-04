@@ -1,0 +1,25 @@
+===========[  ]============
+
+when program is run, the CPU begins execution at the top of main(), executes some number
+of statements (in sequential order by default), and then terminates at the end of main().
+
+the specific sequence of statements tht the CPU executes is called the program's execution
+path (or path for short).
+
+the execution path can be affected using control flow statements.
+these are statements that allow the programmer to change the normal path of execution
+through the program
+
+
+
+============[ categoris of flow control statements ]============
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    category              |             meaning                                                                                           |     impelemtated in C++ by
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+conditional statements      cause a sequence of code to execute only if some condition is met                                               if, switch
+jumps                       tell the CPU to start executing the statements at some other location                                           goto, break, continue
+function calls              are jumps to some other location and back                                                                       Function calls, return
+loops                       tell the program to repeatedly execute some sequence of code zero or more times, until some condition is met    while, do-while, for, ranged-for
+halts                       tlls the program to quit running                                                                                std::exit(), std::abort()
+exceptions                  are special kind of flow control structure designed for error handling                                          try, throw, catch
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
