@@ -56,7 +56,7 @@ int main_1()
 }
 
 // there are a couple of downsides to this method
-    // 1. these constants are now considered compile-time constants only within the fule
+    // 1. these constants are now considered compile-time constants only within the file
     //    they are actually defined in (constants_1.cpp). in other files, the compiler will
     //    only see the forward declaration, which doesn't define a constant values, not
     //    compile-time constants. thus outside of  constants_1.cpp  , these variables can't

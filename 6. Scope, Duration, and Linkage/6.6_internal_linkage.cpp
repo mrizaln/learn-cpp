@@ -8,7 +8,7 @@
 
 //========[ global variables with internal linkage ]========
 // global variables with internal linkage are sometimes called internal variables
-// to make a non-constant global variavle internal, we use the   static   keyword
+// to make a non-constant global variable internal, we use the   static   keyword
 
 static int g_x;             // non-constant globals have external linkage by default, but can be given internal linkage via the static keyword
 const int g_y { 1 };        // const globals have internal linkage by default
