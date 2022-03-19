@@ -1,3 +1,5 @@
+// #define ALLOW_ERROR_DIFFERENTIATION
+
 //============[ how overloaded functions are differentiated ]============
 
 /*---------------------------------------------------------------------------------------
@@ -54,9 +56,10 @@ return type                 no
 
 // this will result in compile error:
 
+#ifdef ALLOW_ERROR_DIFFERENTIATION
     int getRandomValue();
     double getRandomValue();
-
+#endif
 
 
 
@@ -65,6 +68,8 @@ return type                 no
 // when the compiler compiles a function, it performs name mangling, which means the compiled
 // name of the function is altered ("mangled") nased on various criteria, such as the number
 // and type of paramters, so the linker has unique names to work with.
+
+
 
 
 //=======================================================================================

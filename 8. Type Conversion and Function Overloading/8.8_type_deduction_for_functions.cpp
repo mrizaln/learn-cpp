@@ -40,7 +40,7 @@
 // a major downside of functions that use an [auto] return type is that such functions must
 // be fully defined before they can be used (a forward declaration is not sufficient).
 
-#ifdef ALLOW_ERROR
+#ifdef ALLOW_ERROR_FOO
     auto foo();
 
     int main_foo()
@@ -95,7 +95,7 @@
 
 
 
-//============[ type deduceiont can't be used for function parameter types ]============
+//============[ type deduction can't be used for function parameter types ]============
 
 #ifdef ALLOW_ADDANDPRINT
     void addAndPrint(auto x, auto y)
@@ -122,7 +122,7 @@
 
 // in C++20, the [auto] keyword was extented so that the above program will compile and function
 // correctly -- however, [auto] is not invoking type deduction in this case.
-// rather, it is tirggering a different feature called [function templates] that was designed
+// rather, it is triggering a different feature called [function templates] that was designed
 // to actually handle such cases.
 
 
@@ -132,7 +132,7 @@
 
 int main()
 {
-#ifdef ALLOW_ERROR
+#ifdef ALLOW_ERROR_FOO
     main_foo();
 #endif
 #ifdef ALLOW_ADDANDPRINT

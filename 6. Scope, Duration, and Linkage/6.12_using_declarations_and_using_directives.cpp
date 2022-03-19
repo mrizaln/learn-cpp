@@ -20,7 +20,7 @@
 
 //============[ using declarationss ]============
 
-// a using declaration allows us to ouse an unqualified name (with no scope) as an alias
+// a using declaration allows us to use an unqualified name (with no scope) as an alias
 // for a qualified name
 
     int main_using_declaration()
