@@ -1,0 +1,38 @@
+/*---------------------------------------------------------------------------------------
+                    ============[ compound data types ]============
+---------------------------------------------------------------------------------------*/
+
+/*
+  - compound data types are data types that can be constructed from fundamental data types.
+  - each compound data type has its own unique properties as well.
+
+  - C++ supports the following compound data types:
+    > functions
+    > arrays
+    > pointer types:
+        ~ pointer to object
+        ~ pointer to function
+    > pointer to member types:
+        ~ pointer to data member
+        ~ pointer to member function
+    > reference types:
+        ~ L-value references
+        ~ R-value references
+    > enumerated types:
+        ~ unscoped enumerations
+        ~ scoped enumerations
+    > class types:
+        ~ structs
+        ~ classes
+        ~ unions
+*/
+
+/*
+  - in this chapter, we'll cover some of the more straightforward compound types, including
+        > l-value
+        > references
+        > pointers
+        > unscoped enumerations
+        > scoped enumerations
+        > structs
+*/
