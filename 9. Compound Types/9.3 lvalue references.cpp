@@ -173,6 +173,123 @@ namespace reference_type_equal_referent_type
 ==========[ references can't be reseated (changed to refer to another object) ]==========
 ---------------------------------------------------------------------------------------*/
 
+// once initialized, a reference in C++ cannot be reseated, meaning it cannot be changed to
+// reference with another variable to reference.
+
+// consider this:
+
+namespace cant_reseat_reference
+{
+    int main()
+    {
+        int x { 5 };
+        int y { 6 };
+
+        int& ref { x };
+        
+        ref = y;            // assign 6 (the value of y) to x (the object being referenced by ref)
+                            // above line does NOT change ref into a reference to variable y!
+        std::cout << x;
+
+        return 0;
+    }
+}
+
+
+
+
+/*---------------------------------------------------------------------------------------
+            ============[ lvalue reference scope and duration ]============
+---------------------------------------------------------------------------------------*/
+
+// reference variables follow the same scoping and duration rules that normal variables do.
+
+
+
+
+/*---------------------------------------------------------------------------------------
+     ============[ references and referents have independent lifetimes ]============
+---------------------------------------------------------------------------------------*/
+
+/*
+  - with one exception, the lifetime of a reference and the lifetime of its referent are
+    independent:
+      > a reference can be destroyed before the object it is referencing.
+      > the object being referenced can be destroyed before the reference.
+*/
+
+// when a reference destroyed, before the referent, the referent is no impacted
+
+namespace destroy_reference_before_referent
+{
+    int main()
+    {
+        int x { 5 };
+
+        {
+            int& ref { x };
+            std::cout << ref;
+        } // ref is destroyed here -- x is unaware of this
+
+        std::cout << x;
+
+        return 0;
+    } // x destroyed here
+}
+
+
+
+
+/*---------------------------------------------------------------------------------------
+                   ============[ dangling references ]============
+---------------------------------------------------------------------------------------*/
+
+/*
+  - when an object being referenced is destroyed before a reference to it, the reference is
+    left referencing an object that no longer exist.
+  - such a reference is called a [dangling reference].
+  - accessing a dangling reference leads to undefined behaviour.
+*/
+
+
+
+
+/*---------------------------------------------------------------------------------------
+                ============[ references aren't objects ]============
+---------------------------------------------------------------------------------------*/
+
+/*
+  - a reference is not required to exist or occupy storage.
+  - if possible, the compiler will optimize references away be replacing all occurences of
+    a reference with the referent.
+  - however, this isn't always possible, and in such cases, references may require storage.
+
+  - because references aren't objects, they can't be used anywhere an object is required.
+  - in cases where you need a referece that is an object or a reference that can ve reseated,
+    [std::reference_wrapper] (ch 16) provides a solution.
+*/
+
+
+// [ as an aside... ]
+//---------------------------------------------------------------------------------------
+    // consider the following variables:
+    namespace as_an_aside
+    {    
+        int var {};
+        int& ref1 { var };      // lvalue reference bound to var
+        int& ref2 { ref1 };     // lvalue reference bound to var
+    }
+    /*
+      - because [ref2] is initialized with [ref1], you might be tempted to conclude that [ref2]
+        is a reference to a reference.
+      - it is NOT
+    
+      - when used in an expression (such as an initializer), [ref1] evalueates to [var]
+      - so [ref2] is just a normal lvalue reference
+    */
+//---------------------------------------------------------------------------------------
+
+
 
 
 

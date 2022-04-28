@@ -102,8 +102,8 @@ namespace lvalue_expression
 }
 
 /*
-  - lvalues come in two subtypes: a [modifiable lvalua] is an lvalue whose value can be modifed.
-    and [non-modifiable lvalue] is an lvalue whose value cant'be modified (because cont or
+  - lvalues come in two subtypes: a [modifiable lvalue] is an lvalue whose value can be modifed.
+    and [non-modifiable lvalue] is an lvalue whose value cant'be modified (because const or
     constexpr)
 */
 
@@ -144,7 +144,7 @@ namespace rvalue_expression
 
 
 /*---------------------------------------------------------------------------------------
-               ============[ l-value ro r-value conversion ]============
+               ============[ l-value to r-value conversion ]============
 ---------------------------------------------------------------------------------------*/
 
 // assignment operator expect the right operand to be an rvalue expression, and the left
