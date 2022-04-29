@@ -27,7 +27,7 @@ namespace address_of
                 ============[ the dereference operator (*) ]============
 ---------------------------------------------------------------------------------------*/
 
-// the dereference operator returns he value at a given memory address as an lvalue
+// the dereference operator returns the value at a given memory address as an lvalue
 
 namespace dereference
 {
