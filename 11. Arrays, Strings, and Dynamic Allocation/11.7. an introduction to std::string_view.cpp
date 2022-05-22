@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <string_view>
 
 /*---------------------------------------------------------------------------------------
@@ -187,16 +188,119 @@ namespace convert_string_view_to_c_style_string
 
 
 
+
+/*---------------------------------------------------------------------------------------
+  ============[ passing strings by const std::string& or std::string_view? ]============
+---------------------------------------------------------------------------------------*/
+
+// [std::string_view] is the most flexible choice, because it can work efficiently with C-
+// style string arguments, std::string arguments, and std::string_view arguments.
+
+namespace passing_by_string_view
+{
+    void printSV(std::string_view sv)
+    {
+        std::cout << sv << '\n';
+    }
+
+    int main()
+    {
+        std::string s { "Hello, world" };
+        std::string_view sv { s };
+        
+        printSV(s);                 // ok: pass std::string
+        printSV(sv);                // ok: pass std::string_view
+        printSV("Hello, world");    // ok: pass C-style string literal
+
+        return 0;
+    }
+}
+
+// if your function needs to call some other funcion that takes a C-style string or std::string
+// parameter, then const std::string& may be a better choice.
+
+
+
+
+/*---------------------------------------------------------------------------------------
+                        ============[ ownership issues ]============
+---------------------------------------------------------------------------------------*/
+
+// being only a view, std::string_view lifetime is independent of that of the string it is
+// viewing.
+// if the viewed string goes out of scope, std::string_view has nothing to observe and accessing
+// it causes undefined behavior.
+
+namespace std_string_view_issues
+{
+    std::string_view askForName()
+    {
+        std::cout << "What is your name? ";
+
+        std::string name {};
+        std::cin >> name;
+
+        // for demonstration only, we're switching to std::string_view
+        std::string_view view { name };
+
+        return view;
+    } // name dies, and so does the string that name created
+
+    int main()
+    {
+        std::string_view view { askForName() };
+
+        std::cout << "Your name is " << view << '\n';   // undefined behavior
+
+        return 0;
+    }
+}
+
+
+
+
+/*---------------------------------------------------------------------------------------
+      ============[ opening the window (kinda) via the data() function ]============
+---------------------------------------------------------------------------------------*/
+
+// the string being viewed by std::string_view can be accessed by using the data() function
+// which returns a C-style string.
+// it should only be used if the std::string_view's view hasn't been modified and the string
+// being viewed is null-terminated.
+
+namespace view_std_string_view_via_data
+{
+    int main()
+        {
+        std::string_view str{ "balloon" };
+
+        std::cout << str << '\n';
+
+        // We use std::strlen because it's simple, this could be any other function
+        // that needs a null-terminated string.
+        // It's okay to use data() because we haven't modified the view, and the
+        // string is null-terminated.
+        std::cout << std::strlen(str.data()) << '\n';
+
+        return 0;
+    }
+}
+
+
+
+
 //=======================================================================================
 
 int main()
 {
-    example::example_0();
-    example::example_1();
-    change_viewed_string::main();
-    view_modification::main();
-    convert_string_view_to_string::main();
-    convert_string_view_to_c_style_string::main();
+    // example::example_0();
+    // example::example_1();
+    // change_viewed_string::main();
+    // view_modification::main();
+    // convert_string_view_to_string::main();
+    // convert_string_view_to_c_style_string::main();
+    passing_by_string_view::main();
+    std_string_view_issues::main();
 
     return 0;
 }
