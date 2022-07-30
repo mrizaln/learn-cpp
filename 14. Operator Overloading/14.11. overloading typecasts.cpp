@@ -1,10 +1,6 @@
 #include <iostream>
 
 
-/*---------------------------------------------------------------------------------------
-    ============[  ]============
----------------------------------------------------------------------------------------*/
-
 /*
   - C++ already knows how to convert between the built-in data types.
   - however, it does not know how to convert any of user-defined classes.
