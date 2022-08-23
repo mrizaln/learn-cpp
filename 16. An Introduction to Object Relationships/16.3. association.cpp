@@ -281,8 +281,10 @@ namespace indirect_association
 }
 
 // in the above example, we have a CarLot holding our cars.
-// the Driver, who needs a car, doesn't have a pointer to his Cat -- instead, he has the
+// the Driver, who needs a car, doesn't have a pointer to his Car -- instead, he has the
 // ID of the car, which we can use to get the Car from the CarLot when we need it.
+
+
 
 
 //=======================================================================================
