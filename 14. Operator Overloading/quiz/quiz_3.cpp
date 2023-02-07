@@ -15,7 +15,8 @@ private:
     int m_size{};
     int* m_array{ nullptr };
 
-    void swap(IntArray& x, IntArray& y)
+    // copy-and-swap idiom
+    friend void swap(IntArray& x, IntArray& y)
     {
         using std::swap;
         swap(x.m_array, y.m_array);
